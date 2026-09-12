@@ -35,6 +35,8 @@ Bug 修复、小需求、局部重构和轻量 Review 默认不创建 `01–07` 
 
 这是一组可组合动作，不是不可逆的瀑布阶段。
 
+人工参与时的跳步、批量确认、暂定假设和延后 Review 示例见 [人工协作约定](docs/skill-development/human-collaboration.md)。现有阶段名与文档结构沿用，不需要迁移旧项目。
+
 ## Skills
 
 | Skill | 主要产物 | 作用 |
@@ -60,6 +62,7 @@ Bug 修复、小需求、局部重构和轻量 Review 默认不创建 `01–07` 
 - [`docs/skill-development/design.md`](docs/skill-development/design.md)：正式功能开发的仓库级设计，包含工作流模型、权威文档模型、阶段门禁、变更传播和审计记录机制。
 - [`docs/skill-development/maintenance-workflow.md`](docs/skill-development/maintenance-workflow.md)：Bugfix、小需求、重构、轻量 Review 与 Hotfix 的轻量维护边界、环境规则、文档模型和升级条件。
 - [`docs/skill-development/branch-workflow.md`](docs/skill-development/branch-workflow.md)：Uxx 拆分、依赖、命名、独立 Review 与整体 Review 的专项规范。
+- [`docs/skill-development/human-collaboration.md`](docs/skill-development/human-collaboration.md)：人工调整默认检查点、复用授权和区分继续决定与证据结论的协作约定。
 - 各 `skills/<skill-name>/SKILL.md`：单个 skill 的执行规则和场景细节。
 
 README 只提供入口。长期取舍以准则文档为入口；正式功能跨 skill 规则以设计文档为准；轻量维护以 maintenance 专项规范为准；其他专项规则以对应规范和各 skill 自身规则为准。

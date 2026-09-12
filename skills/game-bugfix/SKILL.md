@@ -2,10 +2,12 @@
 name: game-bugfix
 description: Use when an existing game-server behavior may be wrong and needs focused triage, root-cause analysis, and a proportionate repair decision without entering the full feature-development workflow unless the problem materially exceeds a local maintenance change.
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
 ---
 
 # 修复游戏代码缺陷
+
+**人工协作优先：以下门禁、确认点和文档时序均为默认方式；用户可跳步、合并确认、按显式假设继续或延后 Review，已有适用授权无需重复确认。执行前说明实际缺口与影响，按约定范围继续，不把未验证写成已通过；真实操作权限仍须满足。遇到暂停、上游回写或交接时，按[协作约定](references/协作约定.md)处理；该约定也适用于下文模板。**
 
 ## 目标
 

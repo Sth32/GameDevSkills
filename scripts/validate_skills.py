@@ -85,6 +85,8 @@ TARGETED_RULE_MARKERS = {
 }
 
 REQUIRED_REPO_FILES = (
+    "docs/skill-development/human-collaboration.md",
+    "evals/human-collaboration.md",
     "docs/skill-development/document-change-record.md",
     "docs/skill-development/branch-workflow.md",
     "docs/skill-development/maintenance-workflow.md",
@@ -118,6 +120,11 @@ def validate_skill(skill_dir: Path) -> list[str]:
         return ["missing SKILL.md"]
 
     text = skill_file.read_text(encoding="utf-8")
+
+    if "[协作约定](references/协作约定.md)" not in text:
+        errors.append("skill must link its standalone human collaboration guidance")
+    if not (skill_dir / "references" / "协作约定.md").is_file():
+        errors.append("missing standalone human collaboration guidance")
 
     try:
         fm = parse_frontmatter(skill_file)

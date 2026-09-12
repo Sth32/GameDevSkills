@@ -2,10 +2,12 @@
 name: game-hotfix
 description: Use only after the user explicitly confirms that the task should be treated as an online/production hotfix, or explicitly asks to apply production constraints; focus the agent on relevant live-state, stored-data, compatibility, observability, rollback, and compensation risks without assuming or prescribing any project-specific hotfix framework.
 metadata:
-  version: "0.1.1"
+  version: "0.1.2"
 ---
 
 # 处理线上 Hotfix
+
+**人工协作优先：以下门禁、确认点和文档时序均为默认方式；用户可跳步、合并确认、按显式假设继续或延后 Review，已有适用授权无需重复确认。执行前说明实际缺口与影响，按约定范围继续，不把未验证写成已通过；真实操作权限仍须满足。遇到暂停、上游回写或交接时，按[协作约定](references/协作约定.md)处理；该约定也适用于下文模板。**
 
 ## 目标
 

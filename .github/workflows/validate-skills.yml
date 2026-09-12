@@ -64,6 +64,14 @@ jobs:
         if: steps.gate.outputs.run == 'true'
         run: python scripts/validate_skills.py
 
+      - name: Check stage transition policies
+        if: steps.gate.outputs.run == 'true'
+        run: python scripts/apply_stage_transition_policy.py --check
+
+      - name: Test stage transition policy applicator
+        if: steps.gate.outputs.run == 'true'
+        run: python scripts/test_stage_transition_policy.py
+
       - name: Compile helper scripts
         if: steps.gate.outputs.run == 'true'
         run: python -m py_compile scripts/*.py

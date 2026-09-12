@@ -8,7 +8,9 @@ on:
     paths:
       - .github/workflows/apply-stage-transition-policy.yml
       - scripts/apply_stage_transition_policy.py
+      - docs/skill-development/human-collaboration.md
       - skills/**/SKILL.md
+      - skills/**/references/协作约定.md
       - README.md
 
 permissions:
