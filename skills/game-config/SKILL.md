@@ -2,12 +2,19 @@
 name: game-config
 description: Use when confirmed game requirements contain data that may belong in project configuration and the agent must identify the real declarative sources, confirm writable scope, complete approved configuration changes, validate the affected path, produce a concise planner-facing configuration handoff when useful, and hand runtime code work to later implementation skills.
 metadata:
-  version: "0.3.20"
+  version: "0.3.21"
 ---
 
 # 规划并修改游戏配置
 
 **人工协作优先：阶段门禁、确认点与文档时序是默认方式。用户可跳步、合并确认、按显式假设继续或延后 Review；已有适用授权不重复确认，真实操作权限仍须满足。继续决定不等于验证通过：在当前文档保留实际缺口、依据或假设、待补项与复核点；本规则也适用于随包模板。**
+
+## 文档位置
+
+- 只在本技能执行时读取目标项目根目录的可选 `.sth32-game-skills.json`；`documentRoot` 是相对该项目根目录的非空路径。项目根目录取用户指定的目标项目或代码仓库，不是技能安装目录或终端当前目录；目标不明确时先确认。
+- 新建文档按“本次明确指定 → 配置中的 `documentRoot` → `Workbench`”选择位置。用户直接指定功能目录时直接使用，不再追加 `requirements/<feature>`；其余情况下过程文档放在 `<文档根目录>/requirements/<feature>/`，长期文档放在 `<文档根目录>/features/<feature>.md`。直接指定长期文档文件时使用该文件；仅指定过程功能目录不改变长期文档目录。
+- 继续已有功能时，阶段、Uxx、Review、对接和配表说明都沿用已有功能目录；已有同主题长期文档沿用原文件。改变配置不自动搬迁或复制文档，只有明确要求迁移才移动并更新引用。下文路径示例仅用于新建。
+- 未提供文件或字段时使用默认值，不自动创建配置。需要读取的配置若 JSON 格式错误或字段为空、非字符串、非相对路径，说明问题并停止依赖该配置的新建写入，不静默回退。只支持项目配置与对话指定，不读取环境变量或个人配置，也不把设置写入 AGENTS.md。
 
 ## 目标
 
@@ -27,7 +34,7 @@ metadata:
 
 **当前真相硬限制：配置执行或沟通完成后必须原位更新事项。** 删除已解决问题、失效步骤、旧状态和不再有用的人工操作说明，不保留执行流水。策划配表说明只在收尾时从已收敛的当前事实生成或刷新，不作为并行维护的第二套事实源。
 
-**分支工作流硬限制：工作单元最早可在 `01` 需求整理阶段创建，并可独立推进到客户端对接和 `07-Uxx` Review；不存在“所有分支先汇合才能 review”的门禁。当前阶段若发现真实独立范围，仍可继续拆分稳定工作单元 `U01`、`U02`……；所有文件保持在同一个 `docs/requirements/<feature>/` 目录，不增加分支子目录。没有真实分支时继续使用原文件名。第一次拆分创建 `00-工作流索引.md`，只记录 ID、范围、依赖、当前阶段、当前文档和整体 Review 指针；拓扑只由依赖表达。分支文档命名为 `04-<Uxx>-<主题>-配置规划.md`。当前 Uxx 只检查自己的共享需求基线、自身/祖先需求文档和真实依赖；无依赖兄弟工作单元不构成阻塞。**
+**分支工作流硬限制：工作单元最早可在 `01` 需求整理阶段创建，并可独立推进到客户端对接和 `07-Uxx` Review；不存在“所有分支先汇合才能 review”的门禁。当前阶段若发现真实独立范围，仍可继续拆分稳定工作单元 `U01`、`U02`……；所有文件保持在同一个 `<文档根目录>/requirements/<feature>/` 目录，不增加分支子目录。没有真实分支时继续使用原文件名。第一次拆分创建 `00-工作流索引.md`，只记录 ID、范围、依赖、当前阶段、当前文档和整体 Review 指针；拓扑只由依赖表达。分支文档命名为 `04-<Uxx>-<主题>-配置规划.md`。当前 Uxx 只检查自己的共享需求基线、自身/祖先需求文档和真实依赖；无依赖兄弟工作单元不构成阻塞。**
 
 在分支工作流中，下述“本阶段唯一文档”指当前工作单元的唯一 `04` 权威过程文档；`00-工作流索引.md` 只是路由元数据，不复制配置事实、执行状态或验证结果。策划配表说明同样不是权威过程文档，不得被 `00` 当作“当前文档”。
 
@@ -55,13 +62,13 @@ metadata:
 未分支唯一过程文档：
 
 ```text
-docs/requirements/<feature>/04-配置规划.md
+<文档根目录>/requirements/<feature>/04-配置规划.md
 ```
 
 分支后当前工作单元过程文档：
 
 ```text
-docs/requirements/<feature>/04-<Uxx>-<主题>-配置规划.md
+<文档根目录>/requirements/<feature>/04-<Uxx>-<主题>-配置规划.md
 ```
 
 使用 [配置规划模板](references/配置规划模板.md)。人工填表的执行事实仍写在对应配置事项中，不另建人工执行清单。
@@ -70,10 +77,10 @@ docs/requirements/<feature>/04-<Uxx>-<主题>-配置规划.md
 
 ```text
 # 未分支
-docs/requirements/<feature>/04-策划配表说明.md
+<文档根目录>/requirements/<feature>/04-策划配表说明.md
 
 # 分支
-docs/requirements/<feature>/04-<Uxx>-<主题>-策划配表说明.md
+<文档根目录>/requirements/<feature>/04-<Uxx>-<主题>-策划配表说明.md
 ```
 
 使用 [策划配表说明模板](references/策划配表说明模板.md)。同一工作单元只生成一份；两个内容块放在同一文件，但分别维护，不做字段级合并。若两块都没有有效内容，则不创建空文档。

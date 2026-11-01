@@ -2,12 +2,19 @@
 name: game-spec
 description: Use when game feature requirements arrive as conversations, transcripts, tickets, notes, screenshots, or mixed documents and must be consolidated into a concise, lossless original-requirements document before clarification or implementation.
 metadata:
-  version: "0.1.18"
+  version: "0.1.19"
 ---
 
 # 整理游戏原始需求
 
 **人工协作优先：阶段门禁、确认点与文档时序是默认方式。用户可跳步、合并确认、按显式假设继续或延后 Review；已有适用授权不重复确认，真实操作权限仍须满足。继续决定不等于验证通过：在当前文档保留实际缺口、依据或假设、待补项与复核点；本规则也适用于随包模板。**
+
+## 文档位置
+
+- 只在本技能执行时读取目标项目根目录的可选 `.sth32-game-skills.json`；`documentRoot` 是相对该项目根目录的非空路径。项目根目录取用户指定的目标项目或代码仓库，不是技能安装目录或终端当前目录；目标不明确时先确认。
+- 新建文档按“本次明确指定 → 配置中的 `documentRoot` → `Workbench`”选择位置。用户直接指定功能目录时直接使用，不再追加 `requirements/<feature>`；其余情况下过程文档放在 `<文档根目录>/requirements/<feature>/`，长期文档放在 `<文档根目录>/features/<feature>.md`。直接指定长期文档文件时使用该文件；仅指定过程功能目录不改变长期文档目录。
+- 继续已有功能时，阶段、Uxx、Review、对接和配表说明都沿用已有功能目录；已有同主题长期文档沿用原文件。改变配置不自动搬迁或复制文档，只有明确要求迁移才移动并更新引用。下文路径示例仅用于新建。
+- 未提供文件或字段时使用默认值，不自动创建配置。需要读取的配置若 JSON 格式错误或字段为空、非字符串、非相对路径，说明问题并停止依赖该配置的新建写入，不静默回退。只支持项目配置与对话指定，不读取环境变量或个人配置，也不把设置写入 AGENTS.md。
 
 ## 目标
 
@@ -40,15 +47,15 @@ metadata:
 未分支默认写入：
 
 ```text
-docs/requirements/<feature>/01-原始需求.md
+<文档根目录>/requirements/<feature>/01-原始需求.md
 ```
 
 需要在需求层拆分时，同目录创建：
 
 ```text
-docs/requirements/<feature>/00-工作流索引.md
-docs/requirements/<feature>/01-U01-<主题>-原始需求.md
-docs/requirements/<feature>/01-U02-<主题>-原始需求.md
+<文档根目录>/requirements/<feature>/00-工作流索引.md
+<文档根目录>/requirements/<feature>/01-U01-<主题>-原始需求.md
+<文档根目录>/requirements/<feature>/01-U02-<主题>-原始需求.md
 ```
 
 使用 [原始需求模板](references/原始需求模板.md)。`01-原始需求.md` 在分支模式下只保存真正共享的需求基线；每个 `01-Uxx` 只保存当前工作单元专属需求。一个需求事实只能属于一个权威位置，不得为了让分支“自包含”复制共享正文。

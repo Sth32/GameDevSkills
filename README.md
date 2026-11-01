@@ -24,7 +24,29 @@
 | `game-implement` | `06-完整实现方案.md` + 代码 | 补齐行为、边界、兼容与验证 |
 | `game-client-handoff` | 客户端对接文档 | 维护服务端—客户端真实合同 |
 | `game-review` | `07-*-交叉评审.md` | 独立评审工作单元，按需检查整体集成 |
-| `game-docs` | `docs/features/<feature>.md` | 提炼当前实现的长期权威文档 |
+| `game-docs` | `Workbench/features/<feature>.md`（默认） | 提炼当前实现的长期权威文档 |
+
+## 文档位置
+
+默认在使用技能的目标项目内写入：
+
+```text
+Workbench/
+├─ requirements/<功能名>/    # 01–07、Uxx、客户端对接与配表说明
+└─ features/<功能名>.md      # game-docs 长期文档
+```
+
+需要团队自定义时，在目标项目根目录创建可选的 `.sth32-game-skills.json` 并提交 Git：
+
+```json
+{
+  "documentRoot": "Design/Workbench"
+}
+```
+
+路径相对于目标项目根目录。该文件仅在相关技能执行时读取；不需要加入 AGENTS.md，也不支持环境变量覆盖。没有配置时直接使用 `Workbench/`，不自动创建配置文件。
+
+新建时按“本次明确指定 → 配置文件 → 默认值”选择。对话直接指定功能目录时使用该目录，不再追加子路径。已有功能与同主题长期文档沿用原位置，只有明确要求迁移才移动；修改默认值不会生成第二套文档。详细规则见[文档位置](docs/skill-development/design.md#文档位置)。
 
 ## 规范入口
 
