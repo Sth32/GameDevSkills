@@ -1,71 +1,37 @@
 # Game Development Skills
 
-一组面向游戏研发需求、实现与日常维护协作的 Agent Skills。目标是让 Agent 根据任务真实复杂度选择最小可靠路径：复杂功能逐步收敛为可配置、可实现、可评审、可维护的工程结果；局部维护则直接调查、修改和验证，不为流程本身制造额外成本。
+面向游戏服务端功能开发的 Agent Skills：把需求逐步收敛为可实现、可验证、可评审的工程结果，完成客户端对接，并沉淀长期功能文档。
 
-## 工作流
-
-### 正式功能开发
+## 核心流程
 
 ```text
-01 原始需求
-  → 02 需求挖掘
-  → 03 程序实现澄清
-  → 04 配置规划
-  → 05 框架实现
-  → 06 完整实现
-  → 客户端对接（按需）
-  → 07 Review
+01 原始需求 → 02 需求挖掘 → 03 程序实现澄清 → 04 配置规划
+  → 05 框架实现 → 06 完整实现 → 客户端对接（按需）→ 07 Review
   → 长期功能文档
 ```
 
-简单需求保持单线；大需求可以从 `01` 开始按真实边界拆成 `Uxx` 工作单元，各单元独立推进和 Review。所有目标单元完成后，仅在存在集成风险时再执行整体 Review。
-
-### 日常轻量维护
-
-```text
-调查真实事实
-  → 最小正确修改
-  → 按风险验证
-  → 收尾
-```
-
-Bug 修复、小需求、局部重构和轻量 Review 默认不创建 `01–07` 阶段文档、Uxx、状态门禁或正式交叉 Review。只有任务实际越过产品规则、公共合同、数据模型、架构或组合风险边界时，才回到最早必要的正式 skill。
-
-线上 Hotfix 单独处理：**是否需要按已上线/生产环境处理只能由用户确认**，Agent 不从部署脚本、配置、schema、分支或其他仓库迹象自行判断。用户确认后，`game-hotfix` 只提供线上数据、在线状态、兼容、止损、观测、回滚和补偿等风险视角，不绑定或规定项目自身的 Hotfix 发布实现。
-
-这是一组可组合动作，不是不可逆的瀑布阶段。
-
-人工参与时的跳步、批量确认、暂定假设和延后 Review 示例见 [人工协作约定](docs/skill-development/human-collaboration.md)。现有阶段名与文档结构沿用，不需要迁移旧项目。
+简单需求保持单线。复杂功能可从 `01` 起按真实边界拆成 `Uxx` 工作单元，各自按依赖推进、对接和 Review；所有目标单元完成后，仅在存在集成风险时执行整体 Review。用户可以调整顺序和确认节奏，文档始终保留真实状态与验证证据。
 
 ## Skills
 
-| Skill | 主要产物 | 作用 |
+| Skill | 主要产物 | 职责 |
 |---|---|---|
-| `game-spec` | `01-原始需求.md` | 无损整理需求；按需拆分工作单元 |
-| `game-discovery` | `02-需求挖掘.md` | 收敛真正需要需求负责人决定的问题 |
+| `game-spec` | `01-原始需求.md` | 无损整理需求，按需拆分工作单元 |
+| `game-discovery` | `02-需求挖掘.md` | 收敛需要需求负责人决定的产品问题 |
 | `game-tech-clarify` | `03-程序实现澄清.md` | 收敛高影响技术决策 |
-| `game-config` | `04-配置规划.md` | 确认配置真源、值域、关键值并完成配表验证 |
+| `game-config` | `04-配置规划.md` | 确认配置真源、值域和关键值，完成配表验证 |
 | `game-scaffold` | `05-框架实现方案.md` + 骨架 | 建立数据、同步、持久化和调用链框架 |
-| `game-implement` | `06-完整实现方案.md` + 代码 | 补齐完整行为、边界、兼容、测试和运维闭环 |
+| `game-implement` | `06-完整实现方案.md` + 代码 | 补齐行为、边界、兼容与验证 |
 | `game-client-handoff` | 客户端对接文档 | 维护服务端—客户端真实合同 |
-| `game-review` | `07-*-交叉评审.md` | 独立 Review 工作单元，并按需做整体集成查漏 |
-| `game-docs` | `docs/features/<feature>.md` | 提炼长期权威功能文档 |
-| `game-bugfix` | 代码；维护记录按需 | 定位根因并完成最小正确修复与回归验证 |
-| `game-small-change` | 代码；维护记录按需 | 沿现有机制实现规则明确的局部需求 |
-| `game-refactor` | 代码；维护记录按需 | 在冻结外部行为的前提下改善局部结构 |
-| `game-light-review` | 对话 Findings；评审记录按需 | 对维护型 diff 做证据驱动的局部 Review |
-| `game-hotfix` | 修复；Hotfix 记录按需 | 用户确认生产场景后补充线上风险检查，不绑定项目 Hotfix 实现 |
+| `game-review` | `07-*-交叉评审.md` | 独立评审工作单元，按需检查整体集成 |
+| `game-docs` | `docs/features/<feature>.md` | 提炼当前实现的长期权威文档 |
 
-## 设计与规范
+## 规范入口
 
-- [`docs/skill-development/principles.md`](docs/skill-development/principles.md)：长期准则，只维护会改变设计、开发和维护取舍的简短条例。
-- [`docs/skill-development/design.md`](docs/skill-development/design.md)：正式功能开发的仓库级设计，包含工作流模型、权威文档模型、阶段门禁、变更传播和审计记录机制。
-- [`docs/skill-development/maintenance-workflow.md`](docs/skill-development/maintenance-workflow.md)：Bugfix、小需求、重构、轻量 Review 与 Hotfix 的轻量维护边界、环境规则、文档模型和升级条件。
-- [`docs/skill-development/branch-workflow.md`](docs/skill-development/branch-workflow.md)：Uxx 拆分、依赖、命名、独立 Review 与整体 Review 的专项规范。
-- [`docs/skill-development/human-collaboration.md`](docs/skill-development/human-collaboration.md)：人工调整默认检查点、复用授权和区分继续决定与证据结论的协作约定。
-- 各 `skills/<skill-name>/SKILL.md`：单个 skill 的执行规则和场景细节。
-
-README 只提供入口。长期取舍以准则文档为入口；正式功能跨 skill 规则以设计文档为准；轻量维护以 maintenance 专项规范为准；其他专项规则以对应规范和各 skill 自身规则为准。
+- [长期准则](docs/skill-development/principles.md)：影响长期取舍的简短规则。
+- [流程设计](docs/skill-development/design.md)：阶段职责、文档模型、协作与变更传播。
+- [多分支规范](docs/skill-development/branch-workflow.md)：工作单元、依赖、命名和分支评审。
+- 各 `skills/<skill-name>/SKILL.md`：执行规则与按需参考资料；每个技能可独立安装。
 
 ## 安装
 
@@ -77,10 +43,9 @@ npx skills@latest add Sth32/skills
 
 ## 验证
 
-运行静态验证：
-
 ```bash
 python scripts/validate_skills.py
+python -m unittest discover -s scripts -p "test_*.py"
 ```
 
-`evals/` 包含各 skill 的行为测试场景；分支工作流专项测试覆盖简单路径、需求层拆分、兄弟并行、多前驱、Step/Uxx 边界、客户端对接和 Review；轻量维护专项测试覆盖开发期/线上边界、升级条件和按需文档行为。
+GitHub Actions 在 PR 和主分支推送时执行这些检查。`evals/` 保存核心技能、多分支、阶段衔接和人工协作的行为场景；静态检查通过不代表这些场景已经执行或通过。

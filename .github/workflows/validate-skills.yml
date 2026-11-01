@@ -3,19 +3,14 @@ name: Validate skills
 on:
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
   workflow_dispatch:
-  schedule:
-    # Batch validation of unchanged main every 30 minutes as a fallback.
-    - cron: "17,47 * * * *"
 
 permissions:
   contents: read
-  actions: read
 
 concurrency:
-  group: validate-skills-${{ github.event.pull_request.number || 'main' }}
+  group: validate-skills-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -23,59 +18,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Decide whether validation is needed
-        id: gate
-        shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          # Pull requests, pushes, and manual runs validate immediately.
-          if [[ "${{ github.event_name }}" != "schedule" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-
-          current_sha="$(git rev-parse HEAD)"
-          successful_runs="$(
-            gh api \
-              "/repos/${GITHUB_REPOSITORY}/actions/workflows/validate-skills.yml/runs?branch=main&status=success&per_page=100" \
-              --jq ".workflow_runs | map(select(.head_sha == \"${current_sha}\")) | length"
-          )"
-
-          if [[ "$successful_runs" -gt 0 ]]; then
-            echo "run=false" >> "$GITHUB_OUTPUT"
-            echo "HEAD ${current_sha} was already validated successfully; skipping."
-          else
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            echo "HEAD ${current_sha} has not been validated successfully; running batch validation."
-          fi
-
       - uses: actions/setup-python@v5
-        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.x"
-
-      - name: Check canonical policies
-        if: steps.gate.outputs.run == 'true'
-        run: python scripts/apply_document_record_policy.py --check
-
-      - name: Validate skills
-        if: steps.gate.outputs.run == 'true'
+      - name: Validate skills and references
         run: python scripts/validate_skills.py
-
-      - name: Check stage transition policies
-        if: steps.gate.outputs.run == 'true'
-        run: python scripts/apply_stage_transition_policy.py --check
-
-      - name: Test stage transition policy applicator
-        if: steps.gate.outputs.run == 'true'
-        run: python scripts/test_stage_transition_policy.py
-
-      - name: Compile helper scripts
-        if: steps.gate.outputs.run == 'true'
-        run: python -m py_compile scripts/*.py
-
-      - name: Test bundled document recorder
-        if: steps.gate.outputs.run == 'true'
-        run: python scripts/test_bundled_document_record.py
+      - name: Test validator
+        run: python -m unittest discover -s scripts -p "test_*.py"
