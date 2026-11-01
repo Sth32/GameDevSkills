@@ -36,7 +36,7 @@ Workbench/
 └─ features/<功能名>.md      # game-docs 长期文档
 ```
 
-需要团队自定义时，在目标项目根目录创建可选的 `.sth32-game-skills.json` 并提交 Git：
+需要团队自定义时，在目标项目根目录创建可选的 `.game-dev-workbench.json` 并提交 Git：
 
 ```json
 {
