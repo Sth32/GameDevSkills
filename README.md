@@ -58,7 +58,7 @@ Workbench/
 ## 安装
 
 ```bash
-npx skills@latest add Sth32/skills
+npx skills@latest add Sth32/GameDevSkills
 ```
 
 也可以只复制需要的 `skills/<skill-name>/` 目录到 Agent 的 skills 目录。
