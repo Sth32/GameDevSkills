@@ -109,7 +109,7 @@ def validate_skill(skill_dir: Path) -> list[str]:
     if name == "game-spec" and "**需求分支硬限制：" not in text:
         errors.append("missing requirement-stage branching guidance")
     if name == "game-review":
-        for marker in ("**独立 Review 硬限制：", "**整体 Review 硬限制：", "07-<Uxx>-<主题>-交叉评审.md"):
+        for marker in ("**独立 Review 硬限制：", "**整体 Review 硬限制：", "<Uxx>-07-<主题>-交叉评审.md"):
             if marker not in text:
                 errors.append(f"missing review guidance: {marker}")
     elif name not in {"game-spec", "game-docs"}:
