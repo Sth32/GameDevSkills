@@ -2,7 +2,7 @@
 name: game-docs
 description: Use when implemented game-server code must be distilled into a concise, durable authority document covering module responsibility, stable rules, data ownership, persistence, synchronization, and cross-module contracts without recording configurable values, implementation history, or task status.
 metadata:
-  version: "0.2.17"
+  version: "0.2.18"
 ---
 
 # 游戏模块权威文档
@@ -12,8 +12,10 @@ metadata:
 ## 文档位置
 
 - 只在本技能执行时读取目标项目根目录的可选 `.game-dev-workbench.json`；`documentRoot` 是相对该项目根目录的非空路径。项目根目录取用户指定的目标项目或代码仓库，不是技能安装目录或终端当前目录；目标不明确时先确认。
-- 新建文档按“本次明确指定 → 配置中的 `documentRoot` → `Workbench`”选择位置。用户直接指定功能目录时直接使用，不再追加 `requirements/<feature>`；其余情况下过程文档放在 `<文档根目录>/requirements/<feature>/`，长期文档放在 `<文档根目录>/features/<feature>.md`。直接指定长期文档文件时使用该文件；仅指定过程功能目录不改变长期文档目录。
-- 继续已有功能时，阶段、Uxx、Review、对接和配表说明都沿用已有功能目录；已有同主题长期文档沿用原文件。改变配置不自动搬迁或复制文档，只有明确要求迁移才移动并更新引用。下文路径示例仅用于新建。
+- 先通过已提供文档、阶段引用、`00` 或项目内同功能文档定位已有功能目录；后续阶段、Uxx、Review、对接和配表说明都在原目录续接，跨天或修改配置也不另建目录。多个候选权威目录无法确定归属时先澄清；只有明确要求迁移才移动并更新引用。
+- 确需新建功能目录时，按“本次明确指定 → 配置中的 `documentRoot` → `Workbench`”选择根目录，直接使用 `<文档根目录>/<YYMMDD><feature>/`，不添加 `requirements/`、`features/` 或 Uxx 子目录。用户直接指定功能目录时原样使用，不再追加日期或功能名。
+- `YYMMDD` 为功能首次建档时的用户当地日期（两位年、月、日），与稳定功能名直接相连，例如 `Workbench/261030策牌Q4优化/`。已给出带日期的功能目录名时沿用，不重复加日期；后续阶段沿用首次目录。下文路径示例仅用于新建。
+- 长期文档优先原位更新已有同主题文件；没有时在当前功能目录创建 `08-功能实现文档.md`，与过程文档同目录。`08` 只用于文件排序，不增加阶段状态或门禁；明确指定长期文档文件时使用该文件。
 - 未提供文件或字段时使用默认值，不自动创建配置。需要读取的配置若 JSON 格式错误或字段为空、非字符串、非相对路径，说明问题并停止依赖该配置的新建写入，不静默回退。只支持项目配置与对话指定，不读取环境变量或个人配置，也不把设置写入 AGENTS.md。
 
 ## 目标
@@ -51,10 +53,10 @@ metadata:
 
 分支模式下，不机械拼接所有 Uxx 文档正文。优先级仍是当前代码与已验证证据；过程文档只用于解释为什么某个稳定契约存在、帮助发现遗漏或冲突。
 
-已有同主题长期文档时沿用原文件；新建时按“文档位置”规则解析根目录，写入：
+已有同主题长期文档时沿用原文件；没有时按“文档位置”规则定位当前功能目录，写入：
 
 ```text
-<文档根目录>/features/<feature>.md
+<功能目录>/08-功能实现文档.md
 ```
 
 使用 [功能实现文档模板](references/功能实现文档模板.md)。已有同主题文档时原位重写，不新建平行版本或拆分子文档。

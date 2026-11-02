@@ -1,6 +1,6 @@
 # 分支工作流行为评估
 
-用于回归“需求层即可拆分、工作单元独立 Review、整体 Review 只做集成查漏”的工作流协议。所有过程文档保持在同一个已解析的功能目录，默认 `Workbench/requirements/<feature>/`；自定义与已有目录续接见[文档位置场景](document-location.md)。
+用于回归“需求层即可拆分、工作单元独立 Review、整体 Review 只做集成查漏”的工作流协议。所有过程文档保持在同一个已解析的功能目录，新建默认 `Workbench/<YYMMDD><feature>/`，不增加分类或分支目录；跨日期、跨阶段沿用首次建档的目录，自定义与已有目录续接见[文档位置场景](document-location.md)。
 
 ## 场景 1：简单需求零额外成本
 
