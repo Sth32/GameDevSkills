@@ -2,12 +2,12 @@
 name: game-spec
 description: Consolidate game requirement conversations, documents, or screenshots into a lossless original-requirements baseline before clarification or implementation.
 metadata:
-  version: "0.1.23"
+  version: "0.1.24"
 ---
 
 # 整理游戏原始需求
 
-按 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 整理 `01-原始需求.md`。
+开始时读取 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 整理 `01-原始需求.md`。
 
 ## 整理规则
 
