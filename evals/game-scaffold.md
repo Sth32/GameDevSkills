@@ -8,21 +8,21 @@
 
 ## 2. 权威恢复与镜像
 
-输入：Building Actor 的 `allyId`、`buildStatus` 需跨重启保留，Chunk 有摘要镜像，起服时镜像可能未同步。
+输入：Furnishing Actor 的 `ownerId`、`placementStatus` 需跨重启保留，TeapotRealm 有摘要镜像，起服时镜像可能未同步。
 
-通过：权威字段由 Building 持久化，镜像默认不独立持久化；建立“权威恢复→全量同步→mirror ready→开放入口”、运行时增量和重建路径。未 ready 时拒绝/等待/回源，不把默认值或镜像缺失当真实不存在；不实现产品资格判断。
+通过：权威字段由 Furnishing 持久化，镜像默认不独立持久化；建立“权威恢复→全量同步→mirror ready→开放入口”、运行时增量和重建路径。未 ready 时拒绝/等待/回源，不把默认值或镜像缺失当真实不存在；不实现产品资格判断。
 
 ## 3. VIEW_MAP 客户端接线
 
-输入：新属性需在同盟设施页显示，已有 `VIEW_MAP`、Schema 与全量同步链；建造资格是产品规则。
+输入：新属性需在尘歌壶摆设页显示，已有 `VIEW_MAP`、Schema 与全量同步链；摆设放置资格是产品规则。
 
-通过：明确权威、可见对象、镜像和同步通道，获准后补属性/Schema/VIEW_MAP/空接线，验证全量与增量可达；不把展示数据当新权威，不忽略运行时代码接线，也不顺手实现资格、数量或科技判断。
+通过：明确权威、可见对象、镜像和同步通道，获准后补属性/Schema/VIEW_MAP/空接线，验证全量与增量可达；不把展示数据当新权威，不忽略运行时代码接线，也不顺手实现资格、数量或负荷判断。
 
-## 4. 会盟坛连地规则留给实现
+## 4. 尘歌壶摆设放置规则留给实现
 
-输入：涉及 Building、Chunk、Army、Ally，建成/友盟/地块等级判断影响手动占领及自动铺路。
+输入：涉及 Furnishing、TeapotRealm、Traveler、Guest，制作完成/访客权限/区域负荷判断影响手动放置及自动布局。
 
-通过：设计属性、权威、持久化、镜像与可见性；各触发点记录当前实体、可用/缺失数据及权威者，建立 RPC/事件签名和空转发。产品判断交给 06；05 不出现最终 `IsHuiMengTanLinkSource`，不接入 `_hasLinkLandAround` / `AutoPathComp:getNode` 完成成功业务，不能让 06 只剩文档和 smoke。
+通过：设计属性、权威、持久化、镜像与可见性；各触发点记录当前实体、可用/缺失数据及权威者，建立 RPC/事件签名和空转发。产品判断交给 06；05 不出现最终 `CanPlaceTeapotFurnishing`，不接入 `_hasPlacementSpace` / `TeapotPlacementComp:findSlot` 完成成功业务，不能让 06 只剩文档和 smoke。
 
 ## 5. 静态通过而运行未验
 

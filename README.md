@@ -14,17 +14,21 @@
 | `game-review` | `07-交叉评审.md` | 独立评审，按需检查整体集成 |
 | `game-docs` | `08-功能实现文档.md` | 提炼当前实现的长期权威文档 |
 
+文档与回归场景使用《原神》主题的虚构示例；代码符号、配置值和服务端机制仅用于演示，不代表原神实际实现或任何团队的内部项目。
+
 ## 安装
 
 ```bash
-npx skills@latest add Sth32/GameDevSkills
+npx skills@latest add /path/to/GameDevSkills
 ```
+
+将 `/path/to/GameDevSkills` 替换为本地仓库路径。
 
 也可将所需 `skills/<skill-name>/` 整个目录复制到 Agent 的 skills 目录。每个技能独立安装，入口与随包 `references/` 一起使用。
 
 ## 文档位置
 
-默认写入目标项目的 `Workbench/<YYMMDD><功能名>/`，日期取首次建档时的用户当地日期。例如 `Workbench/261030策牌Q4优化/01-原始需求.md`。所有阶段与分支文件放在同目录；已有功能原位续写。
+默认写入目标项目的 `Workbench/<YYMMDD><功能名>/`，日期取首次建档时的用户当地日期。例如 `Workbench/261030七圣召唤优化/01-原始需求.md`。所有阶段与分支文件放在同目录；已有功能原位续写。
 
 团队可在目标项目根目录创建并提交 `.game-dev-workbench.json`：
 
