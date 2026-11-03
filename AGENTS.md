@@ -1,40 +1,19 @@
 # Repository Agent Rules
 
-## Repository design guidance
+## Design changes
 
-Before making repository-wide workflow, document-model, stage-gate, review-model, or other durable design changes, read [`docs/skill-development/principles.md`](docs/skill-development/principles.md) and the relevant detailed design/specification.
+Before durable workflow, document-model, stage-gate or review changes, read [principles](docs/skill-development/principles.md) and the relevant specification. Principles are the sole short list of recurring decision rules; put mechanisms, exceptions and examples in the relevant specification.
 
-`principles.md` is the canonical short list of long-term decision rules. Add a principle only when it changes recurring design or maintenance choices; keep the clause short and put mechanisms, exceptions, templates, and examples in `docs/skill-development/design.md` or the relevant专项规范. Do not maintain a second expanded principles list elsewhere.
+## CI closure
 
-## CI closure is part of every repository change
+Every Agent-originated change includes validation and CI closure:
 
-When an Agent creates, updates, deletes, renames, commits, or pushes files in this repository, the repository change is **not complete when the Git write succeeds**. CI is part of the same change transaction.
+1. Run relevant local checks. After pushing, inspect every relevant Actions run, including runs on automated follow-up commits.
+2. On failure, inspect jobs/logs and fix clear, local, low-risk, verifiable causes; rerun affected checks. Uncertain or high-impact fixes require reporting the workflow, failed step, root-cause evidence and decision/blocker.
+3. Do not claim completion while relevant runs are queued, running, failed, cancelled or unresolved. A later green run supersedes a failure only through an identified fix or intentional generated follow-up whose final CI is green.
 
-For every Agent-originated repository change:
+When monitoring, investigate new CI failures under this same rule rather than only forwarding notifications.
 
-1. Run the relevant local/static validation available before or during the change when possible.
-2. After the change reaches GitHub, inspect all relevant GitHub Actions runs triggered by that change.
-3. Follow any repository automation that creates a follow-up commit. The resulting bot/generated commit is part of the same change chain and its relevant CI must also reach a terminal state.
-4. If any relevant run fails, inspect the failed job and logs, identify the actual root cause, and fix it when the correction is clear, local, low-risk, and verifiable.
-5. Re-run or observe the affected validation after the fix. Continue until the final repository state for this change chain has no unresolved relevant CI failure.
-6. Do not tell the user that repository maintenance is complete, validated, finished, or successfully handed off while a relevant run is queued, in progress, failed, cancelled, or otherwise unresolved.
-7. If CI cannot be made green without a product/design decision, broad refactor, permission change, unavailable external dependency, or other uncertain/high-impact action, stop changing the repository and explicitly report the failing workflow, failed step, root cause evidence, and decision/blocker to the user.
+## Inherited Agent/bot attribution
 
-A later successful run does not silently erase an earlier unexplained failure in the same change chain. Confirm that the failure was superseded by an identified fix or by an intentional generated follow-up commit whose final state is green.
-
-## Inherited Agent/bot commit attribution
-
-When an Agent takes over, corrects, completes, refactors, or otherwise materially changes work that was originally committed by another Agent or bot, the follow-up commit message must preserve that producer attribution.
-
-Use a concise suffix such as `by <producer>` in the commit subject, for example `Fix policy applicator for branched workflows (by codebuddy)`.
-
-- Attribute the actual producing Agent/bot, not merely the Git author identity, when automation used a human account or shared credential to create the original commit and the producer is known from reliable workflow context.
-- If multiple earlier producers materially contributed to the inherited work, name the relevant producer(s) concisely rather than erasing provenance.
-- Do not add `by ...` when the current Agent is only changing unrelated files nearby; attribution is required when the new commit is a correction, completion, refactor, or continuation of the inherited change itself.
-- Do not guess attribution. If the actual producer cannot be determined reliably, omit the suffix rather than attributing the work to the wrong identity.
-
-The attribution suffix records work provenance; it does not replace normal Git author/committer metadata or `Co-authored-by` trailers where those are otherwise appropriate.
-
-## Failure monitoring
-
-When asked to monitor this repository, treat a newly failed GitHub Actions run as actionable maintenance evidence. Inspect the failed jobs/logs rather than forwarding only the GitHub failure notification. Clear maintenance failures may be repaired directly when the fix is unambiguous and verifiable; uncertain or policy-changing fixes require user involvement.
+When materially continuing, correcting or refactoring another Agent/bot's work, retain known producer attribution in the commit subject: `... (by <producer>)`. Name all material producers; use reliable workflow provenance, not a human/shared Git author identity. Omit unknown attribution and unrelated neighboring edits. This suffix does not replace Git author/committer metadata or applicable `Co-authored-by` trailers.
