@@ -1,0 +1,55 @@
+# 仓库页面 UI 定制，全部字段可选，未配置项使用平台默认值。
+# 文档：https://docs.cnb.cool/zh/repo/settings.html
+
+# 云原生开发启动按钮（读取按钮所在分支的配置）
+workspace:
+  launch:
+    button:
+      name: 启动开发环境
+      description: 在云原生开发环境中试用这些 Skills
+    cpus: 4
+    autoOpenWebIDE: false
+
+# Issue 按钮（读取默认分支的配置）
+issue:
+  button:
+    description: 想加一个 Skill、改流程或报问题，都写在这里
+
+# Fork 按钮（读取默认分支的配置）
+fork:
+  button:
+    description: 把你的团队流程也搬过来
+
+# 抄作业按钮（读取默认分支的配置）
+# 注意：首页默认不显示该按钮，需先在仓库简介中添加 example 标签
+copyRepo:
+  button:
+    description: 一套流程，直接抄走
+
+# Tag 自动生成：需要时取消注释并改成约定分支
+# tag:
+#   auto_tag:
+#     branch: hotfix
+
+# NPC 角色（读取默认分支的配置）
+# 未配置 avatar / button.hoverImage：这些图片只认默认分支里的文件，本仓库暂无可用资源
+npc:
+  roles:
+    - name: 流程教练
+      slogan: 从需求到实现，一步步走
+      prompt: |
+        你是游戏服务端研发流程教练，熟悉本仓库的 game-spec、game-discovery、
+        game-tech-clarify、game-config、game-scaffold、game-implement、
+        game-client-handoff、game-review、game-docs 九个 Skill。
+        回答时先判断用户处于哪个阶段、需要哪个 Skill 的产物，再给出该阶段该做的事，
+        不越阶段补需求、补技术方案或替用户做产品决策。
+      enableThinking: false
+    - name: 技能评审
+      prompt: |
+        你是一名 Skill 评审员，专注于校验 skill 文档结构、阶段产物一致性和
+        与 docs/skill-development 下准则的偏离。只指出事实性错误和可验证的遗漏，
+        不重写风格，不引入新流程。
+  defaultRole: 流程教练
+  button:
+    name: 问问 AI
+    description: 不知道该走哪一步？问一下
