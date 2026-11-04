@@ -50,3 +50,9 @@ python -m unittest discover -s scripts -p "test_*.py"
 ```
 
 PR 和主分支推送执行上述静态检查；`evals/` 中的行为场景需另行执行，不能由静态通过推定通过。
+
+## CNB 自动同步
+
+GitHub Actions 的 `Sync to CNB` 在推送时将 GitHub 当前全部分支和标签同步到 [CNB 仓库](https://cnb.cool/qun-org/GameDevSkills)，也支持在 Actions 页面手动运行。工作流使用仓库 Secret `CNB_TOKEN`（需要目标仓库 Git 推送权限），凭据不进入代码或远端 URL。
+
+同步采用原子推送，不强制覆盖分叉历史，也不删除 CNB 独有分支或标签。失败详情见 Actions 日志；修复凭据或冲突后可手动重试。旧分支若尚未包含此工作流，其单独推送不会触发同步，但下一次工作流运行会一并同步。仅同步 Git 历史，不同步 Issue、PR 或 Release 附件。
