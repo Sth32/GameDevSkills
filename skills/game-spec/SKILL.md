@@ -1,21 +1,21 @@
 ---
 name: game-spec
-description: Consolidate game requirement conversations, documents, or screenshots into a lossless original-requirements baseline before clarification or implementation.
+description: Consolidate game requirement sources into a lossless baseline and maintain confirmed product and technical decisions from later clarification.
 metadata:
-  version: "0.1.27"
+  version: "0.1.28"
 ---
 
 # 整理游戏原始需求
 
-开始时读取 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 整理 `01-原始需求.md`。
+开始时读取 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 维护 `01-原始需求.md`，统一保存已确认的需求规则与技术决策。
 
 ## 整理规则
 
-- 只整理来源已有需求，不补边界、验收标准或实现方案；保留限定词和明确给出的技术约束。
+- 初次整理只采用来源已有需求，不自行补边界、验收标准或实现方案；保留限定词和明确给出的技术约束。后续接收 `02/03` 已确认结论及必要理由、约束与证据引用；重整来源时保留这些有效结论。
 - 同一事实只写一次，其条件、数值和例外放在一起；不同限定不能因去重而丢失，跨处联系只引用编号。
 - 仅明确的修正关系可覆盖对应旧说法；否则保留冲突，不默认最新材料优先。
 - 业务语义已明确、只缺可配 ID/数值时，不补值、不列为原文待确认、不阻塞 `01`；具体值、合法范围和字段能力交给 `04` 查真实配置源。若取值改变行为、资格、资产类型、时序、范围或验收，或来源要求固定值，仍属需求未决。
-- 正文默认只有“需求规则”；独立主题才分三级标题。仅按需增加“明确排除”“冲突与原文待确认”，不写空章节或“无”。
+- 正文以“需求规则”为主；独立主题才分三级标题。按需增加“技术决策”“明确排除”“冲突与原文待确认”，不写空章节或“无”，不收录旧问答和废弃方案。
 
 ## 协作与更新
 

@@ -2,7 +2,7 @@
 name: game-docs
 description: Distill implemented game-server behavior into one durable module document of responsibilities, stable rules, data ownership and contracts, excluding process history and configurable values.
 metadata:
-  version: "0.2.20"
+  version: "0.2.21"
 ---
 
 # 游戏模块权威文档
@@ -13,7 +13,7 @@ metadata:
 
 生成前读 [Review 覆盖](references/Review覆盖.md)。存在 `00-工作流索引.md` 时用它定位相关叶单元，不能把分支拓扑当成长期文档结构。
 
-- 事实优先级：当前可运行代码/属性/协议 → 已验证运行与测试 → 有效 Review → 实现/澄清 → 需求与讨论。方案冲突时记录真实实现，指出需修正的具体上游与拟修改内容；沿用已有授权回写。
+- 事实优先级：当前可运行代码/属性/协议 → 已验证运行与测试 → 有效 Review → 实现方案 → `01` 已确认基线 → 未决讨论。方案冲突时记录真实实现，指出需修正的具体上游与拟修改内容；沿用已有授权回写。
 - 只保留稳定且不记录就易破坏语义的职责、规则、权威所有者、持久化/镜像/派生关系、跨模块合同及不变量。同一事实只写一次，按最终系统语义组织。
 - 不写配置快照、TODO、修复与评审过程、完整文件/调用链、普通代码细节、Uxx/DAG、阶段状态或任务进度。数字仅在协议、存档或兼容契约需要时保留；当前不支持的场景写成边界，不写未来计划。
 - 配置写控制内容和稳定消费入口；客户端只写服务端合同。历史原因仅在仍约束未来修改时保留。
