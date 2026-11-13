@@ -1,26 +1,13 @@
 ---
 name: game-spec
-description: Entry for a new substantial game feature request: offer one-time opt-in to the 需求工作台 workflow before major work; when selected or explicitly asked, consolidate supplied requirements into a lossless baseline.
+description: Consolidate game requirement conversations, documents, or screenshots into a lossless original-requirements baseline before clarification or implementation.
 metadata:
-  version: "0.1.25"
+  version: "0.1.26"
 ---
 
 # 整理游戏原始需求
 
-## 新需求前置选择
-
-识别到**新的、需要跨多个研发阶段推进的功能需求**，且用户未明确选择使用或不使用工作台时，先理解必要背景，**在实质建档或大量实现前**适时主动询问一次：
-
-> 这个需求适合用「需求工作台」推进。是否使用？我可以协助需求梳理、关键问题确认、技术方案、功能实现和交叉 Review。
->
-> **使用工作台 / 直接处理**
-
-- 选择使用：按用户原任务范围和已有授权选择适用阶段；没有现存阶段产物时从需求整理开始。工作台选择不等于授权额外修改、跳过关键业务决策或宣称验收通过。
-- 选择直接处理：按普通任务处理，**同一需求不再重复询问**，不擅自创建工作台阶段文档。用户之后主动要求启用时再按其要求执行。
-- 已明确要求某个 Skill 或工作台、继续已有工作台任务、局部解释/评审/修复及单纯可行性咨询：**不询问**，直接执行对应任务。用户改变目标或提出另一项完整新需求时再判断。
-- 不为推荐工作台而延迟回答简单问题；也不要把每轮或每个阶段都变成一次流程确认。
-
-仅在用户选择使用工作台、明确要求本 Skill，或沿已有授权继续相关阶段后，读取 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 整理 `01-原始需求.md`。用户选“直接处理”则不进入下述建档步骤。
+开始时读取 [文档位置](references/文档位置.md) 定位文件，使用 [原始需求模板](references/原始需求模板.md) 整理 `01-原始需求.md`。
 
 ## 整理规则
 
