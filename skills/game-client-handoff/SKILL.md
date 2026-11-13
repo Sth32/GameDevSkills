@@ -2,7 +2,7 @@
 name: game-client-handoff
 description: Document stable server properties, synchronization and RPC/event contracts sufficient for client integration, without designing client architecture.
 metadata:
-  version: "0.1.21"
+  version: "0.1.22"
 ---
 
 # 服务端到客户端对接
@@ -19,7 +19,7 @@ metadata:
 
 ## 分支与协作
 
-- **分支工作流硬限制：** 存在 `00-工作流索引.md` 时先解析当前 Uxx 及真实依赖。合同足够稳定即可对接，`06` 只排序，不等待无依赖兄弟；已有共享合同仅引用，分支只写新增/变化。需要拆分时读 [分支规则](references/分支规则.md)。
+- **分支工作流硬限制：** 存在 `00-工作流索引.md` 时先解析当前 Uxx 及真实依赖。合同足够稳定即可对接，`06` 只排序，不等待无依赖兄弟；已有共享合同仅引用，分支只写新增/变化。用户要求拆分时读 [分支规则](references/分支规则.md)。
 - **人工协作**：用户可调整阶段和回写节奏；沿用已有授权。缺口、假设、待补项及复核点写在当前文档，不另建审批文件；继续不等于验证通过。
 - **文档更新**：默认同轮替换旧合同、删除已解决缺口并告知路径；集中回写时交接说明未落盘内容。需修正上游先列明影响和拟修改内容，已有授权直接执行。
 - **结构性变更**：同步实际受影响的上下游和合同；仅单元、依赖、当前阶段或文档指针改变时更新 `00`。
