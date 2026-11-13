@@ -2,7 +2,7 @@
 name: game-config
 description: Turn confirmed game requirements into validated configuration changes, identify declarative sources and writable scope, and hand runtime code work to implementation.
 metadata:
-  version: "0.3.24"
+  version: "0.3.25"
 ---
 
 # 规划并修改游戏配置
@@ -26,6 +26,6 @@ metadata:
 ## 协作与更新
 
 - **人工协作**：用户可调整阶段、确认及回写节奏；沿用已有授权。继续不等于验证通过，缺口、假设、待补项与复核点留在当前文档。
-- **分支工作流硬限制：** 仅按真实独立范围拆分；当前单元只检查实际依赖，无依赖兄弟不阻塞。拆分/续接按上述参考维护 `00-工作流索引.md`。
+- **分支工作流硬限制：** 按用户确认的方案拆分真实独立范围；当前单元只检查实际依赖，无依赖兄弟不阻塞。拆分/续接按上述参考维护 `00-工作流索引.md`。
 - **文档更新**：默认同轮原位替换旧状态、删除失效步骤并告知路径；集中回写时交接未落盘内容。
 - **结构性变更**：范围、状态、合同、数据权威、依赖或配置真源变化时，同步实际受影响的上下游、客户端合同、策划说明及 `00`。修订上游先列影响与拟修改内容，已有授权直接回写。

@@ -13,7 +13,7 @@ concurrency:
 
 jobs:
   sync:
-    if: github.repository == 'Sth32/GameDevSkills'
+    if: github.repository == 'Sth32/GameDevSkills' || github.repository == 'Sth32/GameWorkbenchSkills'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

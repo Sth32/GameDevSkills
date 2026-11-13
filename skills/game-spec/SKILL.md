@@ -2,7 +2,7 @@
 name: game-spec
 description: Consolidate game requirement conversations, documents, or screenshots into a lossless original-requirements baseline before clarification or implementation.
 metadata:
-  version: "0.1.24"
+  version: "0.1.27"
 ---
 
 # 整理游戏原始需求
@@ -20,7 +20,7 @@ metadata:
 ## 协作与更新
 
 - **人工协作**：用户可调整阶段与回写节奏；沿用已有授权。继续不等于确认或验证通过，缺口、假设、待补项和复核点留在当前文档，不另建审批文件。
-- **需求分支硬限制：** 有真实独立推进边界时可从 `01` 拆分；用户要求协作拆分时也按真实边界执行，不强迫先完成整体 `01`。拆分或续接 Uxx 前读取 [分支规则](references/分支规则.md)，维护 `00-工作流索引.md`；单线不创建它。
+- **需求分支硬限制：** 用户明确要求拆分时，可从 `01` 按真实边界执行，不强迫先完成整体 `01`。拆分或续接 Uxx 前读取 [分支规则](references/分支规则.md)，维护 `00-工作流索引.md`；单线不创建它。
 - **文档更新**：默认同轮原位替换旧结论、删除已解决项并告知路径；约定集中回写时，交接说明未落盘内容。
 - **结构性变更**：范围、状态、合同、数据权威、依赖或配置真源改变时，同步实际受影响的上下游、客户端合同及 `00`。回写上游前列明影响和拟修改内容，已有授权直接执行。
 

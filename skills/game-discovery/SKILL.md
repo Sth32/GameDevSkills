@@ -2,14 +2,14 @@
 name: game-discovery
 description: Clarify high-impact game product decisions with the requirement owner after investigating requirements and code; keep implementation questions out.
 metadata:
-  version: "0.1.22"
+  version: "0.1.23"
 ---
 
 # 挖掘游戏需求
 
 开始时读取 [文档位置](references/文档位置.md)，按 [需求挖掘模板](references/需求挖掘模板.md) 维护 `02-需求挖掘.md`。
 
-**分支工作流硬限制：** 存在 `00-工作流索引.md` 或需拆分时，先读 [分支规则](references/分支规则.md)。仅检查本单元真实依赖，不等兄弟分支汇合。
+**分支工作流硬限制：** 存在 `00-工作流索引.md` 或用户要求拆分时，先读 [分支规则](references/分支规则.md)。仅检查本单元真实依赖，不等兄弟分支汇合。
 
 ## 提问与收敛
 
